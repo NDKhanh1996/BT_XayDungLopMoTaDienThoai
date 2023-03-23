@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<table border="1" cellspacing="0" >
+  <tr>
+    <th>Nokia</th>
+    <th>Iphone</th>
+  </tr>
+  <tr>
+    <td style="vertical-align: top">
+      <button type="button" id="btnTurnOn" onclick="Nokia.turnOn()">Turn on</button>
+      <button type="button" id="btnTurnOff" onclick="Nokia.turnOff()">Turn off</button>
+      <button type="button" id="btncheckOnOff" onclick="Nokia.checkOnOff()">Check on/off</button>
+      <button type="button" id="btncharge" onclick="Nokia.charge()">Charge</button>
+      <br>
+      <input type="text" placeholder="input your message" id="message" onchange="Nokia.typeMessage(this)">
+<!--      onchange="Nokia.typeMessage()"-->
+      <button type="button" id="btnMessage" onclick="Nokia.sendMessage()">Send</button>
+      <br>
+      <p id="draft"></p>
+      <p id="inbox"></p>
+      <p id="sent1"></p>
+    </td>
+    <td style="vertical-align: top">
+      <button type="button" id="btnTurnOn1" onclick="Iphone.turnOn()">Turn on</button>
+      <button type="button" id="btnTurnOff1" onclick="Iphone.turnOff()">Turn off</button>
+      <button type="button" id="btncheckOnOff1" onclick="Iphone.checkOnOff()">Check on/off</button>
+      <button type="button" id="btncharge1" onclick="Iphone.charge()">Charge</button>
+      <br>
+      <input type="text" placeholder="input your message" id="message1" onchange="Iphone.typeMessage(this)">
+      <button type="button" id="btnMessage1" onclick="Iphone.sendMessage()">Send</button>
+      <br>
+      <p id="draft1"></p>
+      <p id="inbox1"></p>
+      <p id="sent"></p>
+
+
+
+    </td>
+  </tr>
+
+</table>
+
+
+
+
+<script>
+  class Phone {
+    constructor(battery, message, draft, inbox, sent) {
+      this.battery = battery
+      this.draft = draft
+      this.inbox = inbox
+      this.sent = sent
+      this.isOn = false;
+      this.message = message
+    }
+
+    checkOnOff() {
+      // check có phải là this không
+      if (this.isOn === true) {
+        alert('This phone is on')
+      } else {
+        alert('This phone is off')
+      }
+    }
+
+    turnOn() {
+      if (this.battery > 0) {
+        this.isOn = true
+        alert(`This Phone is on now`)
+      }
+    }
+
+    turnOff() {
+      this.isOn = false
+      alert(`This Phone is off now`)
+    }
+
+    charge() {
+      this.battery = 100
+      alert('Battery is 100 now')
+    }
+    typeMessage(message){
+      this.message = message.value;
+    }
+    sendMessage() {
+      // this.message = document.getElementById('message').value;
+      this.draft.innerHTML += this.message + '<br>';
+      document.getElementById('message').value = '';
+      this.message = ''
+    }
+    // sendMessage() {
+    //   this.draft.innerHTML += this.message + '<br>';
+    //   // this.message = ''
+    // }
+    // sendMessage(newMessage) {
+    //   this.message = newMessage;
+    //   this.draft.innerHTML += this.message + '<br>';
+    //   this.message = ''
+    // }
+  }
+
+  let Nokia = new Phone(30,'', '', '', '')
+  let newMessage = document.getElementById('message').value;
+  Nokia.draft = document.getElementById('draft1');
+    Nokia.sendMessage(newMessage);
+  // Nokia.message = document.getElementById('message').value;
+
+
+  let Iphone = new Phone(50, '', '', '', '')
+
+  Iphone.message = document.getElementById('message1').value;
+  Iphone.draft = document.getElementById('draft');
+
+  console.log(Nokia.message);
+</script>
+</body>
+</html>
