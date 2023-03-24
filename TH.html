@@ -20,7 +20,10 @@
       //get
       if (this.status){
         return true
-    }}
+    }else {
+        return false
+      }
+    }
     writeMessage(text){
       //void
       //set
@@ -83,6 +86,12 @@
   iphone.sendMessage(nokia);
   iphone.writeMessage(iphone.name + ' : ' + 'iam iphone, nice to meet you')
   iphone.sendMessage(nokia)
+
+  // iphone.turnOn()
+  // iphone.turnOff()
+  // console.log(iphone.checkStatus())
+  // iphone.changeBattery()
+  // console.log(iphone.battery)
 </script>
 </body>
 </html>
