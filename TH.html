@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  class Mobile {
+    constructor(name) {
+      this.battery = 100;
+      this.status = false;
+      this.message = '';
+      this.inbox = [];
+      this.outbox = [];
+      this.name = name
+    }
+    checkStatus(){
+      //boolean
+      //get
+      if (this.status){
+        return true
+    }}
+    writeMessage(text){
+      //void
+      //set
+      this.message = text;
+    }
+    turnOn(){
+      //void
+      //set
+      this.status = true
+    }
+    turnOff(){
+      //void
+      //set
+      this.status = false
+    }
+    decreaseBattery(){
+      if(this.battery > 0){
+        this.battery--
+      }else {
+        this.turnOff();
+      }
+    }
+    changeBattery(){
+      //void
+      //set
+      this.battery += 1;
+    }
+    sendMessage(phone){
+      //void
+      //set
+      //nhan la phone, nhan la this
+      this.outbox.push(this.message + ':' + this.name)
+      phone.inbox.push(this.message)
+      this.decreaseBattery()
+    }
+    getInbox(){
+      //array
+      //get
+      this.decreaseBattery()
+      return this.inbox
+
+    }
+    getOutbox(){
+      //array
+      //get
+      return this.outbox
+    }
+  }
+  let nokia = new Mobile('samsung')
+  let iphone = new Mobile('iphone')
+
+  nokia.writeMessage(nokia.name + ' : ' + 'hello iphone')
+  nokia.sendMessage(iphone);
+  nokia.writeMessage(nokia.name + ' : ' + 'iam nokia, nice to meet you')
+  nokia.sendMessage(iphone)
+
+  // console.log(iphone.getInbox())
+  // console.log(nokia.checkStatus())
+  iphone.writeMessage(iphone.name + ' : ' + 'hello nokia')
+  iphone.sendMessage(nokia);
+  iphone.writeMessage(iphone.name + ' : ' + 'iam iphone, nice to meet you')
+  iphone.sendMessage(nokia)
+</script>
+</body>
+</html>
